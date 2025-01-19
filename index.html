@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.19/dist/sweetalert2.all.min.js"></script>
+  </head>
+  <style>
+    @import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+  </style>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          animation: {
+            "bounce-slow": "bounce 1s infinite;",
+          },
+          fontFamily: {
+            body: ["'Poppins', sans-serif"],
+          },
+        },
+      },
+    };
+  </script>
+  <style>
+    body::before {
+      font-family: "Ubuntu", sans-serif;
+      font-weight: 500;
+      content: "\00A9  Iking Lalusu";
+      color: white;
+      opacity: 0.4;
+      font-size: 12px;
+      position: fixed;
+      bottom: 30px;
+      left: 50%;
+      transform: translateX(-40%);
+    }
+
+    .swal2-title {
+      text-shadow: 3px 3px 3px rgba(255, 255, 255, 0.5);
+      color: black;
+      margin-right: 20px;
+      margin-left: 20px;
+      font-size: 20px;
+      text-align: center;
+      padding: 15px 30px 0 30px;
+    }
+    .swal2-html-container {
+      font-style: "'Poppins', sans-serif";
+      font-weight: bold;
+      color: #000;
+      font-size: 1rem;
+    }
+
+    .swal2-modal {
+      background-image: linear-gradient(to top, #aa9798, #0198a9);
+      border: 0.7px solid #000;
+      border-radius: 30px;
+      color: black;
+      font-size: 15px;
+    }
+
+    .swal2-modal input {
+      background: white;
+    }
+  </style>
+
+  <body>
+    <div
+      class="p-10 min-h-screen flex flex-col justify-center items-center bg-[url('https://i.pinimg.com/564x/f7/7a/eb/f77aebcec690445fa3bb0c22d75e9b20.jpg')]"
+    >
+      <img
+        src="https://media.tenor.com/s5RdbuD_MlIAAAAi/love-letter-objects.gif"
+        alt=""
+        width="150"
+        class="mx-auto animate-bounce"
+        onclick="suratnya();"
+      />
+      <p class="font-body text-white">Tindis Suratnya!!</p>
+    </div>
+
+    <script>
+      const swals = Swal.mixin({
+        allowOutsideClick: false,
+        cancelButtonColor: "#87CEFA",
+      });
+      const swalsy = Swal.mixin({
+        confirmButtonText: "Iya",
+        allowOutsideClick: false,
+      });
+      const swalst = Swal.mixin({
+        allowOutsideClick: false,
+        showConfirmButton: false,
+        timer: 3000,
+        timerProgressBar: true,
+      });
+      const swalss = Swal.mixin({
+        allowOutsideClick: false,
+        showCancelButton: true,
+        showConfirmButton: true,
+      });
+
+      async function mulai() {
+        var { value: nama } = await swals.fire({
+          text: "Isi Nama Dulu",
+          input: "text",
+          confirmButtonColor: "#778899",
+          confirmButtonText: "Lanjut",
+          imageUrl: "https://c.tenor.com/lqtU1G4aaqIAAAAj/yom-dance.gif",
+          imageWidth: 160,
+          imageHeight: 140,
+          allowOutsideClick: false,
+          showCancelButton: false,
+        });
+        play();
+        if (nama) {
+          window.nama = nama;
+          await swalst.fire({
+            text: `Hallo ${nama}`,
+            imageUrl: "https://c.tenor.com/nxEME4zuezEAAAAj/cutie-cat-chan.gif",
+            imageWidth: 120,
+            imageHeight: 120,
+          });
+          await swalst.fire({
+            text: "Maaf bgnggu waktunya",
+            imageUrl: "https://c.tenor.com/yLPF2ku83OoAAAAj/peach-emm.gif",
+            imageWidth: 130,
+            imageHeight: 120,
+          });
+          muncul();
+        } else {
+          await swals.fire(
+            "Ups!",
+            "Nama t boleh kosong ato lebe dari 10 huruf!"
+          );
+          mulai();
+        }
+      }
+      async function muncul() {
+        var { value: tnya } = await swalss.fire({
+          text: `${nama} mau pilih warna apa?`,
+          cancelButtonText: "Pink",
+          cancelButtonColor: "#FFC0CB",
+          confirmButtonColor: "#FF0000",
+          confirmButtonText: "Merah",
+          imageUrl: "https://media.tenor.com/j4qf7yxIXusAAAAj/cute.gif",
+          imageWidth: 100,
+          imageHeight: 120,
+        });
+        if (tnya) {
+          merah();
+        } else {
+          pink();
+        }
+      }
+
+      async function merah() {
+        var { value: merah } = await swalss.fire({
+          text: `Kalo ${nama} pilih merah berarti torang keluar hehe`,
+          confirmButtonText: "OK",
+          confirmButtonColor: "#778899",
+          cancelButtonText: "Ganti pink",
+          cancelButtonColor: "#FFC0CB",
+          imageUrl: "https://media.tenor.com/ShOqQaBREDUAAAAi/peach-cat.gif",
+          imageWidth: 110,
+          imageHeight: 120,
+        });
+        if (merah) {
+          window.location = `https://wa.me/+6281543270363?text=ok iking nanti jemput`;
+        } else {
+          await swals.fire({
+            text: `${nama} yakin mau ganti warna?`,
+            confirmButtonColor: "#778899",
+            confirmButtonText: "IYA",
+            imageUrl:
+              "https://media.tenor.com/tVjoj2nkKvkAAAAi/huh-looking.gif",
+            imageWidth: 120,
+            imageHeight: 120,
+          });
+          await swals.fire({
+            text: "Berarti mulai skrang torang pacaran hehe",
+            confirmButtonColor: "#778899",
+            imageUrl: "https://media.tenor.com/LxggFGxwOjIAAAAj/shy-cat.gif",
+            imageWidth: 120,
+            imageHeight: 120,
+          });
+          window.location = `https://wa.me/+6281543270363?text=iy mulai skarang torang pacaran`;
+        }
+      }
+
+      async function pink() {
+        var { value: pink } = await swalss.fire({
+          text: `Kalo ${nama} pilih pink berarti mulai skrang torang pacaran`,
+          confirmButtonText: "Ganti merah",
+          cancelButtonColor: "#778899",
+          cancelButtonText: "OK",
+          confirmButtonColor: "#FF0000",
+          imageUrl: "https://media.tenor.com/LxggFGxwOjIAAAAj/shy-cat.gif",
+          imageWidth: 120,
+          imageHeight: 120,
+        });
+        if (pink) {
+          await swals.fire({
+            text: `Sama saja cuma beda warna hehe`,
+            confirmButtonColor: "#778899",
+            confirmButtonText: "Lanjut",
+            imageUrl: "https://media.tenor.com/Uhz_C6uw2Q0AAAAi/fish-cute.gif",
+            imageWidth: 120,
+            imageHeight: 110,
+          });
+          window.location = `https://wa.me/+6281543270363?text=iy mulai skarang torang pacaran`;
+        } else {
+          window.location = `https://wa.me/+6281543270363?text=iy mulai skarang torang pacaran`;
+        }
+      }
+
+      function play() {
+        var audio = new Audio("gtr.mp3");
+        audio.play();
+        audio.loop = true;
+        audio.addEventListener(
+          "ended",
+          function () {
+            this.currentTime = 0;
+            this.play();
+          },
+          false
+        );
+      }
+      function suratnya() {
+        document.querySelector("img").remove();
+        document.querySelector("p").remove();
+
+        mulai();
+      }
+    </script>
+  </body>
+</html>
